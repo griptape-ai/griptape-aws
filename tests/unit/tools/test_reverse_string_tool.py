@@ -3,7 +3,9 @@ from griptape.plugin_name.tools.reverse_string import ReverseStringTool
 
 
 class TestReverseStringTool:
-    def test_reverse_string(self):
+    def test_init(self):
+        tool = ReverseStringTool()
+        assert tool is not None
         value = "some_value"
 
         tool = ReverseStringTool()
