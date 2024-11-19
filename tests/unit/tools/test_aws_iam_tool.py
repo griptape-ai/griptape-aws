@@ -6,3 +6,4 @@ class TestAwsIamTool:
         mock_session = Mock()
         tool = AwsIamTool(session=mock_session)
         assert tool is not None
+        assert tool.session == mock_session

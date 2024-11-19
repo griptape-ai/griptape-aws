@@ -6,3 +6,4 @@ class TestAwsPricingTool:
         mock_session = Mock()
         tool = AwsPricingTool(session=mock_session)
         assert tool is not None
+        assert tool.session == mock_session
