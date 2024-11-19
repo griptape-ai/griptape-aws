@@ -1,9 +1,41 @@
-from unittest.mock import Mock
-from griptape.aws.tools.aws_iam.tool import AwsIamTool
+import boto3
+import pytest
+
+from griptape.aws.tools import AwsIamTool
+from tests.utils.aws import mock_aws_credentials
+
 
 class TestAwsIamTool:
-    def test_init(self):
-        mock_session = Mock()
-        tool = AwsIamTool(session=mock_session)
-        assert tool is not None
-        assert tool.session == mock_session
+    @pytest.fixture(autouse=True)
+    def _run_before_and_after_tests(self):
+        mock_aws_credentials()
+
+    def test_get_user_policy(self):
+        value = {"user_name": "test_user", "policy_name": "test_policy"}
+        assert (
+            "error returning policy document"
+            in AwsIamTool(session=boto3.Session())
+            .get_user_policy({"values": value})
+            .value
+        )
+
+    def test_list_mfa_devices(self):
+        assert (
+            "error listing mfa devices"
+            in AwsIamTool(session=boto3.Session()).list_mfa_devices({}).value
+        )
+
+    def test_list_user_policies(self):
+        value = {"user_name": "test_user"}
+        assert (
+            "error listing iam user policies"
+            in AwsIamTool(session=boto3.Session())
+            .list_user_policies({"values": value})
+            .value
+        )
+
+    def test_list_users(self):
+        assert (
+            "error listing s3 users"
+            in AwsIamTool(session=boto3.Session()).list_users({}).value
+        )
