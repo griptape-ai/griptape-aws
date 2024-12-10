@@ -1,17 +1,16 @@
 [tool.poetry]
-name = "griptape_plugin_template"
+name = "griptape-aws"
 version = "0.1.0"
-description = "A Griptape plugin."
-authors = ["Author Name <contact@example.com>"]
+description = "A Griptape plugin for AWS."
+authors = ["Hello Griptape <hello@griptape.ai>"]
 readme = "README.md"
 packages = [
     {include = "griptape"}
 ]
 
 [tool.poetry.dependencies]
-python = "^3.9"
-griptape = "^0.34.0"
-boto3 = "^1.35.51"
+python = "^3.10"
+griptape = "^1.0.0"
 
 [tool.poetry.group.test]
 optional = true
