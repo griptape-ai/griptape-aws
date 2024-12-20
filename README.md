@@ -23,7 +23,7 @@ agent.run("List all my S3 buckets.")
 
 Poetry:
 ```bash
-poetry add https://github.com/griptape-ai/griptape-aws.git
+poetry add git+https://github.com/griptape-ai/griptape-aws.git
 ```
 
 Pip:
